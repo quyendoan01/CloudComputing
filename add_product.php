@@ -91,7 +91,7 @@ $current_url = urlencode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['RE
 
 			<!-- FORM -->
 			<div id="addForm">
-				<form name="productForm" method="post" action="add.php">
+				<form name="productForm" method="post" action="add.php" enctype="multipart/form-data">
 					<table width="45%" style="color: #f3f3f3">
 						<tr>
 							<td>&nbsp;</td>
@@ -134,7 +134,14 @@ $current_url = urlencode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['RE
 								<input type="text" name="product_name" required>
 							</td>
 						</tr>
-
+						<tr>
+							<td>
+								<label>Image &nbsp;&nbsp;</label>
+							</td>
+							<td colspan="2">
+								<input type="file" name="image" required>
+							</td>
+						</tr>
 						<tr>
 							<td>
 								<label>Price &nbsp;&nbsp;</label>

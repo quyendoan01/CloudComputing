@@ -65,23 +65,7 @@ $current_url = urlencode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['RE
 				</a></li>
 
 
-			<li><a href="#acc">
-					<table>
-						<tr>
-							<td><img src="res/icons/accessories.png" /></td>
-							<td>&nbsp;Accessories</td>
-						</tr>
-					</table>
-				</a></li>
-
-			<li><a href="#sou">
-					<table>
-						<tr>
-							<td><img src="res/icons/souvenir.png" /></td>
-							<td>&nbsp;Souvenir</td>
-						</tr>
-					</table>
-				</a></li>
+			
 
 			<li>&nbsp;</li>
 
@@ -108,15 +92,7 @@ $current_url = urlencode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['RE
 
 			<li>&nbsp;</li>
 
-			<li><a href="https://goo.gl/forms/jhAHet2TLLPIOQff1" target="_blank">
-					<table>
-						<tr>
-							<td><img src="res/icons/request.png" /></td>
-							<td>&nbsp;Request Here&nbsp;</td>
-							<td><img src="res/icons/new_page.png" /></td>
-						</tr>
-					</table>
-				</a></li>
+			
 		</ul>
 	</div>
 
@@ -202,7 +178,6 @@ $current_url = urlencode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['RE
 			<!-- View Cart Box End -->
 
 			<!-- Products List Start CLOTHING -->
-			<h3>CLOTHING</h3>
 			<div class="row" id="clothing">
 				<?php
 				$results = $mysqli->query("SELECT product_code, product_name, product_img_name, price FROM products WHERE fandom='Board Game' ORDER BY id ASC");
@@ -217,7 +192,7 @@ $current_url = urlencode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['RE
 	<div class="box">
 	<li class="product">
 	<form method="post" action="cart_update.php">	
-	<img src="res/got/{$obj->product_img_name}">
+	<img src="res/product/{$obj->product_img_name}">
 	<p align="center">{$obj->product_name}</p>
 	<p align="center" style="font-size: 1.2em;">{$currency}{$obj->price} </p>
 	
@@ -249,100 +224,11 @@ EOT;
 
 
 
-			<!-- Products List Start ACC -->
-			<h3>ACCESSORIES</h3>
-			<div class="row" id="acc">
-				<?php
-				$results = $mysqli->query("SELECT product_code, product_name, product_img_name, price FROM products WHERE category='Accessories' AND fandom='Game of Thrones' ORDER BY id ASC");
-				if ($results) {
-					$products_item = '<ul style="list-style-type: none;">';
-					//fetch results set as object and output HTML
-				
-					while ($obj = $results->fetch_object()) {
-						$products_item .= <<<EOT
-	
-	<div class="col-sm-4">
-	<div class="box">
-	<li class="product">
-	<form method="post" action="cart_update.php">	
-	<img src="res/got/{$obj->product_img_name}">
-	<p align="center">{$obj->product_name}</p>
-	<p align="center" style="font-size: 1.2em;">{$currency}{$obj->price} </p>
-	
-	
-	<input type="hidden" name="product_code" value="{$obj->product_code}" />
-	
-	<input type="hidden" name="type" value="add" />
-	<input type="hidden" name="return_url" value="{$current_url}" />
-
-	<div align="center">
-		<label>Quantity: </label>
-		<input type="text" size="2" maxlength="2" name="product_qty" value="1"/>&nbsp;&nbsp;
-		<button type="submit" class="add_to_cart" id="myButton">Add to Cart</button>
-	</div>
-	
-	</form>
-	</li>
-	</div>
-	</div>
-	
-EOT;
-					}
-					$products_item .= '</ul>';
-					echo $products_item;
-				}
-				?>
-			</div>
-			<!-- Products List End Acc-->
+			
 
 
 
-			<!-- Products List Start SOUVENIR -->
-			<h3>SOUVENIR</h3>
-			<div class="row" id="sou">
-				<?php
-				$results = $mysqli->query("SELECT product_code, product_name, product_img_name, price FROM products WHERE category='Souvenir' AND fandom='Game of Thrones' ORDER BY id ASC");
-				if ($results) {
-					$products_item = '<ul style="list-style-type: none;">';
-					//fetch results set as object and output HTML
-				
-					while ($obj = $results->fetch_object()) {
-						$products_item .= <<<EOT
-	
-	<div class="col-sm-4">
-	<div class="box">
-	<li class="product">
-	<form method="post" action="cart_update.php">	
-	<img src="res/got/{$obj->product_img_name}">
-	<p align="center">{$obj->product_name}</p>
-	<p align="center" style="font-size: 1.2em;">{$currency}{$obj->price} </p>
-	
-	
-	<input type="hidden" name="product_code" value="{$obj->product_code}" />
-	
-	<input type="hidden" name="type" value="add" />
-	<input type="hidden" name="return_url" value="{$current_url}" />
-	
-	<div align="center">
-		<label>Quantity: </label>
-		<input type="text" size="2" maxlength="2" name="product_qty" value="1"/>&nbsp;&nbsp;
-		<button type="submit" class="add_to_cart" id="myButton">Add to Cart</button>
-	</div>
-	
-	</form>
-	</li>
-	</div>
-	</div>
-	
-EOT;
-					}
-					$products_item .= '</ul>';
-					echo $products_item;
-				}
-				?>
-			</div>
-			<!-- Products List End SOUVNEIR -->
-
+			
 
 		</section>
 	</div>

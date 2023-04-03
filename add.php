@@ -4,25 +4,57 @@ include_once("config.php");
 
 
 $code = ($_POST['product_code']);
-$name = ($_POST['product_name']);
+$pname = ($_POST['product_name']);
 $cat = ($_POST['category']);
 $fan = ($_POST['fandom']);
 $fees = ($_POST['price']);
 $quant = ($_POST['product_qty']);
 
+$name = $_FILES['image']['name'];
+$tmp_name = $_FILES['image']['tmp_name'];
+$error = $_FILES['image']['error'];
+
+if ($error === UPLOAD_ERR_OK) {
+
+	$data = file_get_contents($tmp_name);
+    // Set the file path and move the file to the XAMPP server directory
+
+    // Connect to the database
+    $conn = mysqli_connect('localhost', 'root', '', 'online');
+
+    // Check connection
+    if (!$conn) {
+      die("Connection failed: " . mysqli_connect_error());
+    }
+
+	$data = mysqli_real_escape_string($conn, $data);
+
+    // Insert the file path into the database
+	
+	$sql = "INSERT INTO products(product_code,product_name,category,fandom,price,product_qty,product_img_name) VALUES ('$code','$pname','$cat','$fan','$fees','$quant','$name')";
 
 
-$sql = "INSERT INTO products(product_code,product_name,category,fandom,price,product_qty) VALUES ('$code','$name','$cat','$fan','$fees','$quant')";
+	if (mysqli_query($mysqli, $sql)) {
+		$upload_dir = "res/product/";
+		$path = $upload_dir . $name;
+		move_uploaded_file($tmp_name, $path);
 
-if (mysqli_query($mysqli, $sql)) {
-	echo '<script type="text/javascript">
-		if(!alert("New Product was added")) document.location = "http://localhost/cloudcweb2/add_product.php";
+		echo '<script type="text/javascript">
+			if(!alert("New Product was added")) document.location = "http://localhost/cloudcweb2/add_product.php";
+			</script>';
+	} else {
+		echo '<script type="text/javascript">
+		if(!alert("Something is error #_#")) document.location = "http://localhost/cloudcweb2/add_product.php";
 		</script>';
-} else {
-	echo '<script type="text/javascript">
-	if(!alert("Something is error #_#")) document.location = "http://localhost/cloudcweb2/add_product.php";
-	</script>';
-}
+	}
+    // Close the database connection
+    mysqli_close($conn);
+  } else {
+    echo "Error uploading file: " . $error;
+  }
+
+
+
 //header("Location:http://localhost/cloudcweb2/add_product.php");
 
 
