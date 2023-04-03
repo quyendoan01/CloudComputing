@@ -11,7 +11,7 @@ if($_SERVER['REQUEST_METHOD']=='POST')
 	
 
 	$query="SELECT * FROM users WHERE email='".$username."' AND password='".$password."' ";
-	$result=mysqli_query($db,$query);
+	$result=mysqli_query($mysqli,$query);
 	if(mysqli_num_rows($result)==1)                         
 	{
 		$row=mysqli_fetch_array($result);

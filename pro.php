@@ -12,12 +12,10 @@
 		$sql;
 		$password=md5($password);
 		
-if (!$db) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+
 $sql = "Insert into users(fname,lname,phone,email,password) values ('$fname','$lname','$phone','$email','$password')";
 
-if (mysqli_query($db, $sql)) 
+if (mysqli_query($mysqli, $sql)) 
 {
 	echo '<script type="text/javascript">prompt("New record created successfully");</script>';
 	header("Location:index.php");

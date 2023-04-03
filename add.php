@@ -24,7 +24,7 @@ if ($error === UPLOAD_ERR_OK) {
 
     // Check connection
 
-	$data = mysqli_real_escape_string($conn, $data);
+	$data = mysqli_real_escape_string($mysqli, $data);
 
     // Insert the file path into the database
 	
@@ -37,15 +37,15 @@ if ($error === UPLOAD_ERR_OK) {
 		move_uploaded_file($tmp_name, $path);
 
 		echo '<script type="text/javascript">
-			if(!alert("New Product was added"))  header("Location: add_product.php");
+			if(!alert("New Product was added"))  header("Location: /add_product.php");
 			</script>';
 	} else {
 		echo '<script type="text/javascript">
-		if(!alert("Something is error #_#")) header("Location: add_product.php");
+		if(!alert("Something is error #_#")) header("Location: /add_product.php");
 		</script>';
 	}
     // Close the database connection
-    mysqli_close($conn);
+    mysqli_close($mysqli);
   } else {
     echo "Error uploading file: " . $error;
   }

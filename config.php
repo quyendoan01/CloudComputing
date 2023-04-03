@@ -1,10 +1,10 @@
 <?php
 $currency = '&#8377; '; //Currency Character or code
 
-$db_username = 'dbuser';
-$db_password = 'dbPass@123';
+$db_username = 'root';
+$db_password = '';
 $db_name = 'online';
-$db_host = 'db';
+$db_host = 'localhost';
 
 $shipping_cost      = 1.50; //shipping cost
 $taxes              = array( //List your Taxes percent here.
