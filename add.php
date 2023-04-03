@@ -20,12 +20,9 @@ if ($error === UPLOAD_ERR_OK) {
     // Set the file path and move the file to the XAMPP server directory
 
     // Connect to the database
-    $conn = mysqli_connect('localhost', 'root', '', 'online');
+
 
     // Check connection
-    if (!$conn) {
-      die("Connection failed: " . mysqli_connect_error());
-    }
 
 	$data = mysqli_real_escape_string($conn, $data);
 
@@ -40,11 +37,11 @@ if ($error === UPLOAD_ERR_OK) {
 		move_uploaded_file($tmp_name, $path);
 
 		echo '<script type="text/javascript">
-			if(!alert("New Product was added")) document.location = "http://localhost/cloudcweb2/add_product.php";
+			if(!alert("New Product was added"))  header("Location: add_product.php");
 			</script>';
 	} else {
 		echo '<script type="text/javascript">
-		if(!alert("Something is error #_#")) document.location = "http://localhost/cloudcweb2/add_product.php";
+		if(!alert("Something is error #_#")) header("Location: add_product.php");
 		</script>';
 	}
     // Close the database connection
@@ -55,7 +52,7 @@ if ($error === UPLOAD_ERR_OK) {
 
 
 
-//header("Location:http://localhost/cloudcweb2/add_product.php");
+
 
 
 

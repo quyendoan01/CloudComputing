@@ -1,6 +1,7 @@
 
 <?php
 session_start();
+include_once("config.php");
 
 if($_SERVER['REQUEST_METHOD']=='POST')
 {
@@ -9,9 +10,8 @@ if($_SERVER['REQUEST_METHOD']=='POST')
 	$password=md5($password);
 	
 
-	$dbc=mysqli_connect('localhost','root','','online') or die("Cannot connect to Database ");
 	$query="SELECT * FROM users WHERE email='".$username."' AND password='".$password."' ";
-	$result=mysqli_query($dbc,$query);
+	$result=mysqli_query($db,$query);
 	if(mysqli_num_rows($result)==1)                         
 	{
 		$row=mysqli_fetch_array($result);

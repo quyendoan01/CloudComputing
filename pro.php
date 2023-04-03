@@ -1,7 +1,7 @@
 <?php
 	session_start();
 
-	$db=mysqli_connect("localhost","root", "","online");
+	include_once("config.php");
 	if(isset($_POST['signup'])) {
 
 		$fname = ($_POST['fname']);
@@ -20,12 +20,12 @@ $sql = "Insert into users(fname,lname,phone,email,password) values ('$fname','$l
 if (mysqli_query($db, $sql)) 
 {
 	echo '<script type="text/javascript">prompt("New record created successfully");</script>';
-	header("Location:http://localhost/cloudcweb2/index.php");
+	header("Location:index.php");
 } 
 else 
 {
 	echo '<script type="text/javascript">prompt("Error Occured");</script>';
-	header("Location:http://localhost/cloudcweb2/index.php");
+	header("Location:index.php");
 
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }

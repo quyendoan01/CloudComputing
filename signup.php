@@ -1,7 +1,7 @@
 <?php
 	session_start();
 
-	$db=mysqli_connect("localhost","root", "","login");
+	include_once("config.php");
 	if(isset($_POST['signup'])) {
 
 		$fname = ($_POST['fname']);
